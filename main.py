@@ -207,7 +207,23 @@ async def contraseña(ctx,*,mensaje:str):
         await ctx.send('¡Claro! Aquí tienes una contraseña:')
         await ctx.send(contraseña)
 
+@bot.command()
+async def help(ctx):
 
+    await ctx.send('''
+    **Comandos disponibles:**
+    - $kodland: Responde con una carita feliz.
+    - $repetir <mensaje>: Repite el mensaje que le envíes.
+    - $saludo <mensaje>: Responde a tu saludo.
+    - $juegos <mensaje>: Responde a preguntas sobre juegos.
+    - $pregunta <mensaje>: Responde a preguntas comunes.
+    - $despedida <mensaje>: Responde a tu despedida.
+    - $sumar <a> <b>: Suma dos números.
+    - $restar <a> <b>: Resta dos números.
+    - $multiplicar <a> <b>: Multiplica dos números.
+    - $dividir <a> <b>: Divide dos números.
+    - $contraseña: Genera una contraseña aleatoria.
+    ''')
 
 token = ''
 
