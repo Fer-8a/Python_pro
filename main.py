@@ -1,5 +1,9 @@
 import discord
 from discord.ext import commands
+import random
+import os
+import requests
+
 
 
 intent = discord.Intents.default()
@@ -208,8 +212,7 @@ async def contraseña(ctx,*,mensaje:str):
         await ctx.send(contraseña)
 
 @bot.command()
-async def help(ctx):
-
+async def ayuda(ctx):
     await ctx.send('''
     **Comandos disponibles:**
     - $kodland: Responde con una carita feliz.
@@ -224,6 +227,51 @@ async def help(ctx):
     - $dividir <a> <b>: Divide dos números.
     - $contraseña: Genera una contraseña aleatoria.
     ''')
+
+@bot.command()
+async def mem1 (ctx):
+    
+    with open('imagenes/mem1.jpg', 'rb') as file:
+        
+        picture = discord.File(file)
+        
+        await ctx.send(file=picture)
+
+@bot.command()
+async def mem4 (ctx):
+    
+    with open('imagenes/mem4.jpg', 'rb') as file:
+        
+        picture = discord.File(file)
+        
+        await ctx.send(file=picture)
+
+
+@bot.command()
+async def meme_aleatorio(ctx):
+    
+    img_name = random.choice(os.listdir('imagenes'))
+    
+    with open(f'imagenes/{img_name}', 'rb') as file:
+        
+        picture = discord.File(file)
+        
+        await ctx.send(file=picture)
+
+
+def get_dog_image_url():    
+    url = 'https://random.dog/woof.json'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+@bot.command('perro')
+async def imagen_perro(ctx):
+    '''Una vez que llamamos al comando duck, 
+    el programa llama a la función get_duck_image_url'''
+    image_url = get_dog_image_url()
+    await ctx.send(image_url)
+    
 
 token = ''
 
